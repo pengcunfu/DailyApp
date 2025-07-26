@@ -1,0 +1,22 @@
+{
+    "version": "1.0",
+    "browser": "on",
+    "api": "s3v4",
+    "max_keys": 1000,
+    "ignore_healthcheck": false,
+    "address": ":9000",              
+    "console_address": ":9001",      
+    "region": "us-east-1",           
+    "secure": false,                  
+    "certs_dir": "/root/.minio/certs", 
+    "access_key": "minioaccesskey",  
+    "secret_key": "miniosecretkey",   
+    "storage_class": "STANDARD",      
+    "minio_root_user": "rootuser",    
+    "minio_root_password": "rootpassword",
+    "log": {
+      "minio": "stdout",
+      "s3": "stdout"
+    }
+  }
+  

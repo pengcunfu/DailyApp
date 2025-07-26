@@ -6,3 +6,4 @@ web-vue/
 ref/
 templates/
 *.db
+*.sql

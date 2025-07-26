@@ -1,0 +1,44 @@
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - "8080:80"
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ~/backend:/var/www/html
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: daily_app
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ~/data/mysql:/var/lib/mysql  # 将 MySQL 数据卷放到用户的 home 目录下
+
+  minio:
+    image: minio/minio:RELEASE.2021-06-17T00-10-46Z
+    container_name: minio
+    restart: always
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: admin123
+    ports:
+      - "9000:9000"
+    volumes:
+      - ~/data/minio:/data  # 将 MinIO 数据卷放到用户的 home 目录下
+      - ~/minio/config.json:/root/.minio/config.json  # 配置文件挂载
+    command: server /data
