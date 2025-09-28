@@ -20,12 +20,33 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=mongodb://8.155.40.179:27017/daily_app
+      - MONGODB_URI=mongodb://mongodb:27017/daily_app
       - PORT=3000
+    depends_on:
+      - mongodb
     volumes:
       - ./daily-server/uploads:/app/uploads
     networks:
       - daily-app-network
+
+  # MongoDB 数据库
+  mongodb:
+    image: mongo:6.0
+    container_name: daily-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=daily_app
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - daily-app-network
+
+# 数据卷
+volumes:
+  mongodb_data:
+    driver: local
 
 # 网络
 networks:
