@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
 const appearanceController = require('../controllers/appearanceController');
-const auth = require('../middleware/auth');
+const { auth } = require('../middleware/auth');
 
 // 验证规则
 const appearanceValidation = [

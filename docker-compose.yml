@@ -20,7 +20,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=mongodb://8.155.40.179:27017/daily_app
+      - MONGODB_URI=mongodb://admin:Bing2003@8.155.40.179:27017/daily_app?authSource=admin
       - PORT=3000
     volumes:
       - ./daily-server/uploads:/app/uploads
