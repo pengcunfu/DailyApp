@@ -1,44 +1,54 @@
-version: "3"
 services:
+  # 前端服务 - Vue.js 应用
   frontend:
-    build: ./frontend
-    container_name: frontend
+    build: ./daily-web
+    container_name: daily-web
     restart: always
     ports:
       - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - daily-app-network
 
+  # 后端服务 - Node.js/Express 应用
   backend:
-    build: ./backend
-    container_name: backend
+    build: ./daily-server
+    container_name: daily-server
     restart: always
     ports:
-      - "8000:8000"
-    volumes:
-      - ~/backend:/var/www/html
-
-  mysql:
-    image: mysql:8
-    container_name: mysql
-    restart: always
+      - "3000:3000"
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: daily_app
-    ports:
-      - "3306:3306"
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/daily_app
+      - PORT=3000
+    depends_on:
+      - mongodb
     volumes:
-      - ~/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ~/data/mysql:/var/lib/mysql  # 将 MySQL 数据卷放到用户的 home 目录下
+      - ./daily-server/uploads:/app/uploads
+    networks:
+      - daily-app-network
 
-  minio:
-    image: minio/minio:RELEASE.2021-06-17T00-10-46Z
-    container_name: minio
+  # MongoDB 数据库
+  mongodb:
+    image: mongo:6.0
+    container_name: daily-mongodb
     restart: always
-    environment:
-      MINIO_ACCESS_KEY: admin
-      MINIO_SECRET_KEY: admin123
     ports:
-      - "9000:9000"
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=daily_app
     volumes:
-      - ~/data/minio:/data  # 将 MinIO 数据卷放到用户的 home 目录下
-      - ~/minio/config.json:/root/.minio/config.json  # 配置文件挂载
-    command: server /data
+      - mongodb_data:/data/db
+    networks:
+      - daily-app-network
+
+# 数据卷
+volumes:
+  mongodb_data:
+    driver: local
+
+# 网络
+networks:
+  daily-app-network:
+    driver: bridge
