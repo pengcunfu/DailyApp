@@ -122,6 +122,18 @@
 			}
 		},
 		{
+			"path": "pages/diary/index",
+			"style": {
+				"navigationBarTitleText": "我的日记"
+			}
+		},
+		{
+			"path": "pages/diary/add",
+			"style": {
+				"navigationBarTitleText": "写日记"
+			}
+		},
+		{
 			"path": "pages/profile/index",
 			"style": {
 				"navigationBarTitleText": "个人设置"

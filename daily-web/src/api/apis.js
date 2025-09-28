@@ -594,6 +594,19 @@ export function getMenuList() {
           ]
         },
         {
+          id: 9,
+          name: "日记管理",
+          path: "/diary",
+          icon: "Document",
+          children: [
+            {
+              id: 91,
+              name: "我的日记",
+              path: "/diary"
+            }
+          ]
+        },
+        {
           id: 8,
           name: "系统管理",
           path: "/system",

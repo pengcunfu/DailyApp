@@ -137,3 +137,19 @@ export const appearanceAPI = {
   // 获取形象统计
   getStats: () => get('/appearances/stats')
 }
+
+// 日记相关接口
+export const diaryAPI = {
+  // 获取日记列表
+  getList: (params) => get('/diaries', params),
+  // 创建日记
+  create: (data) => post('/diaries', data),
+  // 获取日记详情
+  getDetail: (id) => get(`/diaries/${id}`),
+  // 更新日记
+  update: (id, data) => put(`/diaries/${id}`, data),
+  // 删除日记
+  delete: (id) => del(`/diaries/${id}`),
+  // 获取日记统计
+  getStats: () => get('/diaries/stats')
+}

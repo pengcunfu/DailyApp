@@ -39,6 +39,14 @@
         <view class="stat-number">{{ userStats.friendCount || 0 }}</view>
         <view class="stat-label">朋友数量</view>
       </view>
+      <view class="stat-item" @tap="goToPage('/pages/food/index')">
+        <view class="stat-number">{{ userStats.foodCount || 0 }}</view>
+        <view class="stat-label">美食记录</view>
+      </view>
+      <view class="stat-item" @tap="goToPage('/pages/appearance/index')">
+        <view class="stat-number">{{ userStats.appearanceCount || 0 }}</view>
+        <view class="stat-label">形象记录</view>
+      </view>
     </view>
     
     <!-- 功能菜单 -->
@@ -78,6 +86,32 @@
           <view class="menu-content">
             <view class="menu-title">生日提醒</view>
             <view class="menu-desc">朋友生日提醒设置</view>
+          </view>
+          <view class="menu-arrow">
+            <text class="iconfont icon-arrow">></text>
+          </view>
+        </view>
+
+        <view class="menu-item" @tap="goToPage('/pages/food/nutrition')">
+          <view class="menu-icon" style="background: #FFA726;">
+            <text class="iconfont icon-nutrition">🥗</text>
+          </view>
+          <view class="menu-content">
+            <view class="menu-title">营养统计</view>
+            <view class="menu-desc">查看营养摄入情况</view>
+          </view>
+          <view class="menu-arrow">
+            <text class="iconfont icon-arrow">></text>
+          </view>
+        </view>
+
+        <view class="menu-item" @tap="goToPage('/pages/diary/index')">
+          <view class="menu-icon" style="background: #AB47BC;">
+            <text class="iconfont icon-diary">📝</text>
+          </view>
+          <view class="menu-content">
+            <view class="menu-title">我的日记</view>
+            <view class="menu-desc">记录生活点滴</view>
           </view>
           <view class="menu-arrow">
             <text class="iconfont icon-arrow">></text>

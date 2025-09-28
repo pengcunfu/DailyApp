@@ -116,13 +116,19 @@ import dayjs from 'dayjs'
         { key: 'expense', label: '今日支出', value: '0' },
         { key: 'todos', label: '待办事项', value: '0' },
         { key: 'notes', label: '笔记数量', value: '0' },
-        { key: 'foods', label: '美食记录', value: '0' }
+        { key: 'foods', label: '美食记录', value: '0' },
+        { key: 'friends', label: '朋友数量', value: '0' },
+        { key: 'appearance', label: '形象记录', value: '0' }
       ],
       quickActions: [
         { id: 1, name: '记账', icon: 'icon-money', color: '#FF6B6B', path: '/pages/bill/add' },
         { id: 2, name: '待办', icon: 'icon-todo', color: '#4ECDC4', path: '/pages/todo/add' },
         { id: 3, name: '笔记', icon: 'icon-note', color: '#45B7D1', path: '/pages/note/add' },
-        { id: 4, name: '美食', icon: 'icon-food', color: '#96CEB4', path: '/pages/food/add' }
+        { id: 4, name: '美食', icon: 'icon-food', color: '#96CEB4', path: '/pages/food/add' },
+        { id: 5, name: '朋友', icon: 'icon-friend', color: '#FFA726', path: '/pages/friend/add' },
+        { id: 6, name: '形象', icon: 'icon-appearance', color: '#AB47BC', path: '/pages/appearance/index' },
+        { id: 7, name: '日记', icon: 'icon-diary', color: '#26A69A', path: '/pages/diary/add' },
+        { id: 8, name: '统计', icon: 'icon-stats', color: '#EF5350', path: '/pages/bill/statistics' }
       ],
       recentActivities: [],
       urgentTodos: []
