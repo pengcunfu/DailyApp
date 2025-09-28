@@ -209,3 +209,13 @@ export const getRelativeTime = (timestamp) => {
     return Math.floor(diff / year) + '年前'
   }
 }
+
+/**
+ * 获取当前日期时间字符串
+ * @param {string|Date} date 日期，默认为当前时间
+ * @param {string} format 格式，默认 'YYYY-MM-DD HH:mm:ss'
+ * @returns {string} 格式化的日期时间字符串
+ */
+export const getDateTime = (date = new Date(), format = 'YYYY-MM-DD HH:mm:ss') => {
+  return formatDate(date, format)
+}

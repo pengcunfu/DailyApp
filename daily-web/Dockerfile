@@ -1,8 +1,11 @@
 # 构建阶段
-FROM node:18-alpine as build-stage
+FROM node:18-alpine AS build-stage
 
 # 设置工作目录
 WORKDIR /app
+
+# 设置npm国内镜像源
+RUN npm config set registry https://registry.npmmirror.com
 
 # 复制 package.json 和 package-lock.json
 COPY package*.json ./
@@ -17,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # 生产阶段
-FROM nginx:alpine as production-stage
+FROM nginx:alpine AS production-stage
 
 # 复制构建的文件到 nginx
 COPY --from=build-stage /app/dist /usr/share/nginx/html
